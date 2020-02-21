@@ -1,0 +1,20 @@
+import 'package:data_connection_checker/data_connection_checker.dart';
+import 'package:network_state/network_state.dart';
+
+abstract class NetworkInfoInterface {
+  Future<bool> get isConnected;
+}
+
+class NetworkInfo implements NetworkInfoInterface {
+  final DataConnectionChecker connectionChecker;
+
+  NetworkInfo(this.connectionChecker);
+
+  @override
+  Future<bool> get isConnected => connectionChecker.hasConnection;
+}
+
+class NetworkInfoWeb implements NetworkInfoInterface {
+  @override
+  Future<bool> get isConnected => Future.value(true);
+}
