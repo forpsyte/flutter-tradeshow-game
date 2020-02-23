@@ -29,7 +29,6 @@ class PlayerModel extends Player {
 
   Map<String, dynamic> toJson() {
     return {
-      'email': email,
       'name': name,
       'score': score,
     };
