@@ -69,6 +69,8 @@ class PlayerRepository implements PlayerRepositoryInterface {
         return Left(PlatformFailure());
       } on MissingPluginException {
         return Left(MissingPluginFailure());
+      } on FormatException {
+        return Left(InvalidEmailFailure());
       }
     } else {
       return Left(ConnectionFailure());

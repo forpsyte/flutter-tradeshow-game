@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class GameMenu extends StatelessWidget {
   const GameMenu({
@@ -12,38 +13,28 @@ class GameMenu extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
-          GestureDetector(
-            child: Text(
-              "Home",
-              style: TextStyle(
-                fontSize: 20.0,
-                color: Colors.white,
-                fontFamily: "Varela Round",
-              ),
-            ),
-            onTap: () {
+          FloatingActionButton.extended(
+            heroTag: 'home',
+            icon: Icon(Icons.home),
+            label: Text("Home"),
+            onPressed: () {
               Navigator.of(context).popAndPushNamed('/');
             },
           ),
           SizedBox(
             width: 20.0,
           ),
-          GestureDetector(
-            child: Text(
-              "High Scores",
-              style: TextStyle(
-                fontSize: 20.0,
-                color: Colors.white,
-                fontFamily: "Varela Round",
-              ),
-            ),
-            onTap: () {
+          FloatingActionButton.extended(
+            heroTag: 'scoreboard',
+            icon: Icon(MdiIcons.trophy),
+            label: Text("High Scores"),
+            onPressed: () {
               Navigator.of(context).popAndPushNamed('/scoreboard');
             },
           ),
           SizedBox(
             width: 20.0,
-          )
+          ),
         ],
       ),
     );

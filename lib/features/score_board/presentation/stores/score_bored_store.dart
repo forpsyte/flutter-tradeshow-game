@@ -1,4 +1,3 @@
-import 'package:async/async.dart';
 import 'package:meta/meta.dart';
 import 'package:mobx/mobx.dart';
 
@@ -16,7 +15,6 @@ class ScoreBoardStore = ScoreBoardStoreBase with _$ScoreBoardStore;
 abstract class ScoreBoardStoreBase with Store {
   final GetTopPlayers getTopPlayers;
   final SubmitPlayerInformation submitPlayerInformation;
-  final AsyncMemoizer _asyncMemoizer = AsyncMemoizer();
 
   ScoreBoardStoreBase({
     @required GetTopPlayers listAction,

@@ -25,12 +25,12 @@ class SubmissionDialog extends Dialog {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      backgroundColor: Color.fromRGBO(237, 246, 254, 1.0),
+      backgroundColor: Theme.of(context).dialogBackgroundColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12.0),
       ),
       child: Container(
-        height: size,
+        height: size + 50,
         width: size,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

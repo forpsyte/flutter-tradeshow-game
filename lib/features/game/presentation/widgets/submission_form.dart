@@ -35,24 +35,40 @@ class SubmissionForm extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 40),
             child: TextFormField(
               controller: _emailController,
+              style: TextStyle(color: Theme.of(context).primaryColor),
               showCursor: true,
-              cursorColor: Colors.black,
+              cursorColor: Color.fromRGBO(41, 155, 252, 1.0),
               decoration: const InputDecoration(
                   enabledBorder: OutlineInputBorder(
-                    borderRadius: const BorderRadius.all(Radius.circular(32.0)),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(32.0),
+                    ),
+                    borderSide: BorderSide(
+                      color: Color.fromRGBO(41, 155, 252, 1.0),
+                    ),
                   ),
                   border: OutlineInputBorder(
-                    borderRadius: const BorderRadius.all(Radius.circular(32.0)),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(32.0),
+                    ),
+                    borderSide: BorderSide(
+                      color: Color.fromRGBO(41, 155, 252, 1.0),
+                    ),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderRadius: const BorderRadius.all(Radius.circular(32.0)),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(32.0),
+                    ),
+                    borderSide: BorderSide(
+                      color: Color.fromRGBO(41, 155, 252, 1.0),
+                    ),
                   ),
                   prefixIcon: Icon(
                     Icons.mail,
-                    color: Colors.black,
+                    color: Color.fromRGBO(41, 155, 252, 1.0),
                   ),
                   labelText: 'E-mail',
-                  labelStyle: TextStyle(color: Colors.black)),
+                  labelStyle: TextStyle(color: Color.fromRGBO(41, 155, 252, 1.0))),
               validator: (value) {
                 if (value.isEmpty) {
                   return 'Please enter a valid email.';
@@ -65,24 +81,40 @@ class SubmissionForm extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
             child: TextFormField(
               controller: _nameController,
+              style: TextStyle(color: Theme.of(context).primaryColor),
               showCursor: true,
               cursorColor: Colors.black,
               decoration: const InputDecoration(
                   enabledBorder: OutlineInputBorder(
-                    borderRadius: const BorderRadius.all(Radius.circular(32.0)),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(32.0),
+                    ),
+                    borderSide: BorderSide(
+                      color: Color.fromRGBO(41, 155, 252, 1.0),
+                    ),
                   ),
                   border: OutlineInputBorder(
-                    borderRadius: const BorderRadius.all(Radius.circular(32.0)),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(32.0),
+                    ),
+                    borderSide: BorderSide(
+                      color: Color.fromRGBO(41, 155, 252, 1.0),
+                    ),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderRadius: const BorderRadius.all(Radius.circular(32.0)),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(32.0),
+                    ),
+                    borderSide: BorderSide(
+                      color: Color.fromRGBO(41, 155, 252, 1.0),
+                    ),
                   ),
                   prefixIcon: Icon(
                     Icons.person,
-                    color: Colors.black,
+                    color: Color.fromRGBO(41, 155, 252, 1.0),
                   ),
                   labelText: 'Name',
-                  labelStyle: TextStyle(color: Colors.black)),
+                  labelStyle: TextStyle(color: Color.fromRGBO(41, 155, 252, 1.0))),
               validator: (value) {
                 if (value.isEmpty) {
                   return 'Please enter a name.';
@@ -92,7 +124,11 @@ class SubmissionForm extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10, top: 50),
+            padding: const EdgeInsets.only(
+              left: 10,
+              right: 10,
+              top: 30,
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.end,
@@ -127,7 +163,7 @@ class SubmissionForm extends StatelessWidget {
                   width: 20,
                 ),
                 FloatingActionButton.extended(
-                  foregroundColor: Colors.red,
+                  backgroundColor: Colors.red,
                   onPressed: () {
                     Navigator.of(context).pop();
                     widget.store.gameOver = false;

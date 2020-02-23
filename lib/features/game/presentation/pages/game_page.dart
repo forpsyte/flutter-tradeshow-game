@@ -29,7 +29,7 @@ class _GamePageState extends State<GamePage> with TickerProviderStateMixin {
     super.initState();
     controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 30),
+      duration: Duration(seconds: 3),
     );
     _addListener(context);
   }
@@ -37,11 +37,25 @@ class _GamePageState extends State<GamePage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     ThemeData themeData = Theme.of(context);
+    Color bgColor = Color.fromRGBO(41, 155, 252, 1.0);
     return Scaffold(
-      backgroundColor: Color.fromRGBO(41, 155, 252, 1.0),
+      backgroundColor: bgColor,
       body: Column(
         children: <Widget>[
           GameMenu(),
+          SizedBox(
+            height: 20.0,
+          ),
+          FittedBox(
+            fit: BoxFit.fill,
+            child: Container(
+              height: 100.0,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                child: Image.asset('assets/images/logo2.png'),
+              ),
+            ),
+          ),
           Expanded(
             child: AnimatedBuilder(
               animation: controller,
@@ -51,13 +65,13 @@ class _GamePageState extends State<GamePage> with TickerProviderStateMixin {
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: Container(
-                        color: Color.fromRGBO(41, 155, 252, 1.0),
+                        color: bgColor,
                         height: controller.value *
                             MediaQuery.of(context).size.height,
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(50.0),
+                      padding: EdgeInsets.fromLTRB(8.0, 0, 8.0, 30.0),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[

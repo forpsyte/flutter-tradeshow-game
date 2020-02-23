@@ -11,6 +11,5 @@ class EmailValidator {
     } on FormatException {
       return Left(InvalidEmailFailure());
     }
-    
   }
 }

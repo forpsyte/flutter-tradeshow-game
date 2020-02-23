@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:email_validator/email_validator.dart' as validator;
 import 'package:meta/meta.dart';
 
 import '../../../../core/error/exceptions.dart';
@@ -52,6 +53,10 @@ class PlayerRemoteDataSource implements PlayerRemoteDataSourceInterface {
   @override
   Future<bool> submitPlayerInformation(Player data) async {
     try {
+      if (!validator.EmailValidator.validate(data.email)) {
+        throw FormatException("Invalid email");
+      }
+      
       final querySnapshot = await firestore
         .collection(collection)
         .where("email", isEqualTo: data.email)

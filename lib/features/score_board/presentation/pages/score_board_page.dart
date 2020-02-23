@@ -23,10 +23,10 @@ class _ScoreBoardPageState extends State<ScoreBoardPage>
   }
 
   Widget build(BuildContext context) {
-    ThemeData themeData = Theme.of(context);
+    Color bgColor = Color.fromRGBO(41, 155, 252, 1.0);
     super.build(context);
     return Scaffold(
-      backgroundColor: Color.fromRGBO(41, 155, 252, 1.0),
+      backgroundColor: bgColor,
       body: Column(
         children: <Widget>[
           GameMenu(),
@@ -36,15 +36,36 @@ class _ScoreBoardPageState extends State<ScoreBoardPage>
           Container(
             child: Text(
               "Top Players",
-              style: TextStyle(
-                fontFamily: "Varela Round",
-                fontSize: 40,
-                color: Colors.white,
-              ),
+              style: Theme.of(context).textTheme.headline2,
             ),
           ),
           SizedBox(
             height: 50,
+          ),
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: Container(
+                  child: Text(
+                    "Player",
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.headline3,
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  child: Text(
+                    "Score",
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.headline3,
+                  ),
+                ),
+              )
+            ],
+          ),
+          SizedBox(
+            height: 30,
           ),
           Observer(
             builder: (_) {
@@ -69,29 +90,20 @@ class _ScoreBoardPageState extends State<ScoreBoardPage>
                                 child: Container(
                                   child: Text(
                                     widget.store.collection[index].name,
-                                    textAlign: TextAlign.right,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: MediaQuery.of(context).size.width / 40,
-                                      fontFamily: "Varela Round",
-                                    ),
+                                    textAlign: TextAlign.center,
+                                    style:
+                                        Theme.of(context).textTheme.headline5,
                                   ),
                                 ),
-                              ),
-                              SizedBox(
-                                width: 40,
                               ),
                               Expanded(
                                 child: Container(
                                   child: Text(
                                     widget.store.collection[index].score
                                         .toString(),
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: MediaQuery.of(context).size.width / 40,
-                                      fontFamily: "Varela Round",
-                                    ),
+                                    textAlign: TextAlign.center,
+                                    style:
+                                        Theme.of(context).textTheme.headline5,
                                   ),
                                 ),
                               )

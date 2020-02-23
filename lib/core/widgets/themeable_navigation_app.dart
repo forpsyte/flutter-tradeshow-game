@@ -22,7 +22,31 @@ class ThemeableNavigationApp extends StatelessWidget {
         iconTheme: IconThemeData(
           color: Colors.blue,
         ),
+        primaryColor: Color.fromRGBO(41, 155, 252, 1.0),
         accentColor: Color.fromRGBO(255, 74, 109, 1.0),
+        dialogBackgroundColor: Color.fromRGBO(27, 44, 70, 1.0),
+        textTheme: TextTheme(
+            bodyText1: TextStyle(
+              fontSize: 20.0,
+              color: Color.fromRGBO(27, 44, 70, 1.0),
+            ),
+            headline1: TextStyle(
+              fontSize: 80.0,
+              color: Color.fromRGBO(27, 44, 70, 1.0),
+            ),
+            headline2: TextStyle(
+              fontSize: 40.0,
+              color: Color.fromRGBO(27, 44, 70, 1.0),
+            ),
+            headline3: TextStyle(
+              fontSize: 30.0,
+              color: Color.fromRGBO(27, 44, 70, 1.0),
+            ),
+            headline5: TextStyle(
+              fontSize: 20.0,
+              color: Color.fromRGBO(27, 44, 70, 1.0),
+            )),
+        fontFamily: "Varela Round",
       ),
       routes: {
         '/scoreboard': (context) => Consumer<ScoreBoardStore>(

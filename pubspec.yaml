@@ -35,6 +35,10 @@ dependencies:
   provider: ^4.0.4
   # Network state
   network_state: ^0.0.1
+  #Auto size text
+  auto_size_text: ^2.1.0
+  #Icons
+  material_design_icons_flutter: ^3.4.4995
 
 dev_dependencies:
   flutter_test:
@@ -50,4 +54,5 @@ flutter:
         - asset: assets/fonts/VarelaRound-Regular.ttf
   assets:
     - assets/images/logo.png
+    - assets/images/logo2.png
   uses-material-design: true

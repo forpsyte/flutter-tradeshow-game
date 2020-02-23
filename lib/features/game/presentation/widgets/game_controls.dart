@@ -3,7 +3,6 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../pages/game_page.dart';
 import 'start_button.dart';
-import 'submit_button.dart';
 
 class GameControls extends StatelessWidget {
   const GameControls({
