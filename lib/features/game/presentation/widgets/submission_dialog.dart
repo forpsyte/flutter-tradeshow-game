@@ -6,7 +6,8 @@ import 'submission_form.dart';
 class SubmissionDialog extends Dialog {
   const SubmissionDialog({
     Key key,
-    @required this.size,
+    @required this.width,
+    @required this.height,
     @required GlobalKey<FormState> submissionFormKey,
     @required TextEditingController emailController,
     @required TextEditingController nameController,
@@ -16,7 +17,8 @@ class SubmissionDialog extends Dialog {
         _nameController = nameController,
         super(key: key);
 
-  final double size;
+  final double width;
+  final double height;
   final GlobalKey<FormState> _submissionFormKey;
   final TextEditingController _emailController;
   final TextEditingController _nameController;
@@ -30,8 +32,8 @@ class SubmissionDialog extends Dialog {
         borderRadius: BorderRadius.circular(12.0),
       ),
       child: Container(
-        height: size + 50,
-        width: size,
+        height: width < 768 ? height - 150 : 500,
+        width: width < 768 ? width : 500,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[

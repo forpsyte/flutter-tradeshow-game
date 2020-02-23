@@ -8,10 +8,11 @@ class GameMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return Padding(
-      padding: const EdgeInsets.only(top: 20.0),
+      padding: const EdgeInsets.only(top: 20.0, left: 10.0, right: 10.0),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: screenWidth < 768 ? MainAxisAlignment.center : MainAxisAlignment.end,
         children: <Widget>[
           FloatingActionButton.extended(
             heroTag: 'home',
@@ -31,9 +32,6 @@ class GameMenu extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).popAndPushNamed('/scoreboard');
             },
-          ),
-          SizedBox(
-            width: 20.0,
           ),
         ],
       ),

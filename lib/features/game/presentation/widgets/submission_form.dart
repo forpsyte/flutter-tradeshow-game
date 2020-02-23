@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tradeshow/features/game/presentation/pages/game_page.dart';
+
+import '../pages/game_page.dart';
+import 'submission_actions.dart';
+import 'submission_actions_mobile.dart';
 
 class SubmissionForm extends StatelessWidget {
   const SubmissionForm({
@@ -20,6 +23,7 @@ class SubmissionForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
     return Form(
       key: _submissionFormKey,
       child: Column(
@@ -32,7 +36,7 @@ class SubmissionForm extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: TextFormField(
               controller: _emailController,
               style: TextStyle(color: Theme.of(context).primaryColor),
@@ -68,7 +72,8 @@ class SubmissionForm extends StatelessWidget {
                     color: Color.fromRGBO(41, 155, 252, 1.0),
                   ),
                   labelText: 'E-mail',
-                  labelStyle: TextStyle(color: Color.fromRGBO(41, 155, 252, 1.0))),
+                  labelStyle:
+                      TextStyle(color: Color.fromRGBO(41, 155, 252, 1.0))),
               validator: (value) {
                 if (value.isEmpty) {
                   return 'Please enter a valid email.';
@@ -78,7 +83,7 @@ class SubmissionForm extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: TextFormField(
               controller: _nameController,
               style: TextStyle(color: Theme.of(context).primaryColor),
@@ -114,7 +119,8 @@ class SubmissionForm extends StatelessWidget {
                     color: Color.fromRGBO(41, 155, 252, 1.0),
                   ),
                   labelText: 'Name',
-                  labelStyle: TextStyle(color: Color.fromRGBO(41, 155, 252, 1.0))),
+                  labelStyle:
+                      TextStyle(color: Color.fromRGBO(41, 155, 252, 1.0))),
               validator: (value) {
                 if (value.isEmpty) {
                   return 'Please enter a name.';
@@ -129,60 +135,28 @@ class SubmissionForm extends StatelessWidget {
               right: 10,
               top: 30,
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: <Widget>[
-                FloatingActionButton.extended(
-                  backgroundColor: Color.fromRGBO(41, 155, 252, 1.0),
-                  onPressed: () async {
-                    if (_submissionFormKey.currentState.validate()) {
-                      var score = widget.store.numClicks;
-                      await widget.store.submit(
-                        email: _emailController.text,
-                        name: _nameController.text,
-                        score: score,
-                      );
-                      widget.store.gameOver = false;
-                      widget.store.resetClickCount();
-                      _emailController.text = '';
-                      _nameController.text = '';
-                      Navigator.of(context).pop();
-                    }
-                  },
-                  label: Text(
-                    'Submit',
-                    style: TextStyle(
-                      fontSize: 18.0,
-                      color: Colors.white,
-                      fontFamily: "Varela Round",
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 20,
-                ),
-                FloatingActionButton.extended(
-                  backgroundColor: Colors.red,
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                    widget.store.gameOver = false;
-                    widget.store.resetClickCount();
-                  },
-                  label: Text(
-                    'Cancel',
-                    style: TextStyle(
-                      fontSize: 18.0,
-                      color: Colors.white,
-                      fontFamily: "Varela Round",
-                    ),
-                  ),
-                )
-              ],
-            ),
+            child: width < 768 ? getMobileActions() : getWebActions(),
           ),
         ],
       ),
+    );
+  }
+
+  Widget getMobileActions() {
+    return SubmissionActionsMobile(
+      submissionFormKey: _submissionFormKey,
+      widget: widget,
+      emailController: _emailController,
+      nameController: _nameController,
+    );
+  }
+
+  Widget getWebActions() {
+    return SubmissionActions(
+      submissionFormKey: _submissionFormKey,
+      widget: widget,
+      emailController: _emailController,
+      nameController: _nameController,
     );
   }
 }

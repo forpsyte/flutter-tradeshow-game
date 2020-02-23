@@ -19,7 +19,7 @@ class GameOverMessage extends StatelessWidget {
         child: Text(
           "GAME OVER",
           style: TextStyle(
-            fontSize: 40.0,
+            fontSize: 20.0,
             fontFamily: "Varela Round",
             color: Colors.white,
           ),

@@ -29,7 +29,7 @@ class _GamePageState extends State<GamePage> with TickerProviderStateMixin {
     super.initState();
     controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 30),
+      duration: Duration(seconds: 1),
     );
     _addListener(context);
   }
@@ -38,53 +38,48 @@ class _GamePageState extends State<GamePage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     ThemeData themeData = Theme.of(context);
     Color bgColor = Color.fromRGBO(41, 155, 252, 1.0);
+    final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: bgColor,
       body: Column(
         children: <Widget>[
           GameMenu(),
           SizedBox(
-            height: 20.0,
+            height: 10.0,
           ),
           FittedBox(
             fit: BoxFit.fill,
             child: Container(
-              height: 100.0,
+              height: screenWidth < 768 ? 75.0 : 100.0,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 40.0),
                 child: Image.asset('assets/images/logo2.png'),
               ),
             ),
           ),
-          Expanded(
+          GameOverMessage(widget: widget),
+          SizedBox(height: 10.0),
+          Container(
+            width: screenWidth < 768 ? 300 : 600,
+            height: screenWidth < 768 ? 300 : 600,
             child: AnimatedBuilder(
               animation: controller,
               builder: (context, child) {
                 return Stack(
                   children: <Widget>[
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Container(
-                        color: bgColor,
-                        height: controller.value *
-                            MediaQuery.of(context).size.height,
-                      ),
-                    ),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(8.0, 0, 8.0, 30.0),
+                      padding: EdgeInsets.all(8.0),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          GameOverMessage(widget: widget),
-                          SizedBox(height: 40.0),
                           CountDownTimer(
                             controller: controller,
                             themeData: themeData,
                             widget: widget,
                             timerString: timerString,
                           ),
-                          SizedBox(height: 40.0),
-                          GameControls(controller: controller, widget: widget),
+                          SizedBox(height: 20.0),
                         ],
                       ),
                     ),
@@ -93,6 +88,8 @@ class _GamePageState extends State<GamePage> with TickerProviderStateMixin {
               },
             ),
           ),
+          GameControls(controller: controller, widget: widget),
+          SizedBox(height: 30.0),
         ],
       ),
     );
@@ -104,12 +101,14 @@ class _GamePageState extends State<GamePage> with TickerProviderStateMixin {
   }
 
   void _showSimpleCustomDialog(BuildContext context) {
-    final size = MediaQuery.of(context).size.height / 2;
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     showDialog(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) => SubmissionDialog(
-        size: size,
+        height: height,
+        width: width,
         submissionFormKey: _submissionFormKey,
         emailController: _emailController,
         nameController: _nameController,
