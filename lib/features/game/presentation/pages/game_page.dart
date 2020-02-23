@@ -29,7 +29,7 @@ class _GamePageState extends State<GamePage> with TickerProviderStateMixin {
     super.initState();
     controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 1),
+      duration: Duration(seconds: 30),
     );
     _addListener(context);
   }
